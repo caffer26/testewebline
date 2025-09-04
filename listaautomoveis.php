@@ -1,31 +1,19 @@
 <?php
-// 1. CONEXÃO COM O BANCO DE DADOS
 require_once 'connect.php';
 
-// 2. LÓGICA DA BUSCA
-// A variável $busca vai guardar o termo pesquisado pelo usuário.
-// Usamos o operador ternário para verificar se $_GET['busca'] existe.
 $busca = isset($_GET['busca']) ? $_GET['busca'] : '';
 
-// 3. MONTANDO A QUERY SQL PRINCIPAL
-// Esta é a parte mais importante. Usamos o JOIN para combinar as tabelas.
-// 'a' é um apelido para 'automoveis' e 'm' é um apelido para 'montadoras'.
 $sql = "SELECT a.codigo, a.nome, a.placa, a.chassi, m.nome AS nome_montadora
         FROM automoveis AS a
         JOIN montadoras AS m ON a.montadora = m.codigo";
 
-// 4. ADICIONANDO O FILTRO DE BUSCA SE NECESSÁRIO
 if ($busca != '') {
-    // Se o usuário pesquisou algo, adicionamos o WHERE na nossa query
-    // O LIKE com '%' permite buscar por partes do nome.
     $sql .= " WHERE a.nome LIKE ?";
 }
 
-// 5. PREPARANDO E EXECUTANDO A QUERY
 $stmt = mysqli_prepare($conexao, $sql);
 
 if ($busca != '') {
-    // Se houve busca, precisamos associar o parâmetro
     $termo_busca = "%" . $busca . "%";
     mysqli_stmt_bind_param($stmt, "s", $termo_busca);
 }
@@ -87,7 +75,6 @@ $resultado = mysqli_stmt_get_result($stmt);
 </body>
 </html>
 <?php
-// Fechando a conexão
 mysqli_stmt_close($stmt);
 mysqli_close($conexao);
 ?>

@@ -1,14 +1,8 @@
 <?php
-// 1. CONEXÃO COM O BANCO DE DADOS
-// O comando require_once inclui o arquivo de conexão.
-// Se o arquivo não for encontrado, o script para.
 require_once 'connect.php';
 
-// 2. BUSCANDO AS MONTADORAS NO BANCO
-// Criamos a consulta SQL para buscar todas as montadoras em ordem alfabética.
 $sql = "SELECT codigo, nome FROM montadoras ORDER BY nome";
-// mysqli_query() executa a consulta no banco de dados.
-// O resultado é armazenado na variável $resultado_montadoras.
+
 $resultado_montadoras = mysqli_query($conexao, $sql);
 ?>
 
