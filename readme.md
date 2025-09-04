@@ -20,4 +20,4 @@ Este é um projeto desenvolvido como parte do processo seletivo para a vaga de e
 ---
 
 **Desenvolvido por:** Fernando Caffer Mattar
-**Data de Finalização:** 04/09/2025
+**Data de Finalização:** 04/09/2025 - Versão Final
